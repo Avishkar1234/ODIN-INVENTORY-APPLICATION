@@ -1,0 +1,30 @@
+{
+  "name": "odin-inventory-application",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avishkar1234/ODIN-INVENTORY-APPLICATION.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Avishkar1234/ODIN-INVENTORY-APPLICATION/issues"
+  },
+  "homepage": "https://github.com/Avishkar1234/ODIN-INVENTORY-APPLICATION#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "pg": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.13"
+  }
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Categoires</title>
+</head>
+<body>
+    <h1>All Categories</h1>
+
+    <a href="/categories/new">+ Add Category</a>
+    <ul>
+        <% categories.forEach(category => { %>
+            <li>
+                <a href="/categories/<%= category.id %>">
+                    <strong><%= category.name %></strong>
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
