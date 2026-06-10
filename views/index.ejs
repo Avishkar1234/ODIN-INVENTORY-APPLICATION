@@ -1,21 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Music Store Invetory</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Store Inventory</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .actions {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .actions a {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            background: #0077cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .actions a:hover {
+            background: #005fa3;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .category-list li {
+            background: white;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .category-list a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .category-list a:hover {
+            color: #0077cc;
+        }
+    </style>
 </head>
 <body>
-    <h1>Music Store Invetory</h1>
+
+    <h1>🎵 Music Store Inventory</h1>
+
+    <div class="actions">
+        <a href="/categories/new">Add Category</a>
+        <a href="/items/new">Add Item</a>
+    </div>
 
     <h2>Categories</h2>
 
-    <ul>
-        <% categories.forEach(category => { %>
-            <li>
-                <a href="/categories/<%= category.id %>">
-                    <%= category.name %>
-                </a>
-            </li>
-        <% }) %>
-    </ul>
+    <% if (categories.length === 0) { %>
+        <p>No categories found.</p>
+    <% } else { %>
+        <ul class="category-list">
+            <% categories.forEach(category => { %>
+                <li>
+                    <a href="/categories/<%= category.id %>">
+                        <%= category.name %>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+
 </body>
 </html>
