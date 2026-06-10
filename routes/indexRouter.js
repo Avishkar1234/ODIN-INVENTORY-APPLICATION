@@ -5,10 +5,10 @@ const pool = require("../db/pool");
 router.get("/", async function (req, res) {
   try {
     const result = await pool.query("SELECT * FROM categories");
-    return res.json(result.rows);
+    res.render("index", { categories: result.rows });
   } catch (err) {
-    console.error("HOME ROUTE ERROR:", err);
-    return res.status(500).send(err.message);
+    console.error("RENDER ERROR:", err);
+    res.status(500).send(`<pre>${err.stack}</pre>`);
   }
 });
 

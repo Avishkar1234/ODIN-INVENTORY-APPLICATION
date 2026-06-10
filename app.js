@@ -17,11 +17,4 @@ app.use("/", indexRouter);
 app.use("/categories", categoryRouter);
 app.use("/items", itemRouter);
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
-// ✅ Change 2: Export app for Vercel
 module.exports = app;
