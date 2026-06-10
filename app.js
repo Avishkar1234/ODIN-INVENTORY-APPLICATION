@@ -8,6 +8,8 @@ const indexRouter = require("./routes/indexRouter");
 const categoryRouter = require("./routes/categoryRouter");
 const itemRouter = require("./routes/itemRouter");
 
+// EJS setup
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
