@@ -5,18 +5,23 @@ require("dotenv").config();
 const app = express();
 
 const indexRouter = require("./routes/indexRouter");
-const categoryRouter = require("./routes/categoryRouter")
+const categoryRouter = require("./routes/categoryRouter");
 const itemRouter = require("./routes/itemRouter");
 
 app.set("view engine", "ejs");
 
-app.use(express.urlencoded( { extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/categories", categoryRouter);
-app.use("/items", itemRouter)
+app.use("/items", itemRouter);
 
-app.listen(3000, () => {
-    console.log("Server running on port 3000")
-})
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+// ✅ Change 2: Export app for Vercel
+module.exports = app;
