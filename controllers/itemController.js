@@ -14,15 +14,17 @@ exports.item_create_post = async (req, res) => {
   try {
     const { name, description, price, category_id } = req.body;
 
+    console.log("FORM DATA:", req.body);
+
     await pool.query(
       "INSERT INTO items (name, description, price, category_id) VALUES ($1, $2, $3, $4)",
-      [name, description, price, category_id]
+      [name, description, price, category_id],
     );
 
-    res.redirect(`/categories/${category_id}`);
+    return res.send("ITEM CREATED SUCCESSFULLY");
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error creating item");
+    return res.status(500).send(`<pre>${err.stack}</pre>`);
   }
 };
 
@@ -35,7 +37,7 @@ exports.getItemDetail = async (req, res) => {
        FROM items
        JOIN categories ON items.category_id = categories.id
        WHERE items.id = $1`,
-      [id]
+      [id],
     );
 
     if (result.rows.length === 0) {
@@ -53,7 +55,9 @@ exports.editItemForm = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const itemResult = await pool.query("SELECT * FROM items WHERE id = $1", [id]);
+    const itemResult = await pool.query("SELECT * FROM items WHERE id = $1", [
+      id,
+    ]);
 
     if (itemResult.rows.length === 0) {
       return res.status(404).send("Item not found");
@@ -78,7 +82,7 @@ exports.editItem = async (req, res) => {
 
     await pool.query(
       "UPDATE items SET name = $1, description = $2, price = $3, category_id = $4 WHERE id = $5",
-      [name, description, price, category_id, id]
+      [name, description, price, category_id, id],
     );
 
     res.redirect(`/items/${id}`);
@@ -92,7 +96,10 @@ exports.deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const item = await pool.query("SELECT category_id FROM items WHERE id = $1", [id]);
+    const item = await pool.query(
+      "SELECT category_id FROM items WHERE id = $1",
+      [id],
+    );
 
     if (item.rows.length === 0) {
       return res.status(404).send("Item not found");
