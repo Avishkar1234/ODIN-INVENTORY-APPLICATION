@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Categoires</title>
+    <title>All Categories</title>
 </head>
 <body>
+
     <h1>All Categories</h1>
 
-    <a href="/categories/new">+ Add Category</a>
+    <p>
+        <a href="/">Home</a> |
+        <a href="/categories/new">Add Category</a> |
+        <a href="/items/new">Add Item</a>
+    </p>
+
     <ul>
         <% categories.forEach(category => { %>
             <li>
                 <a href="/categories/<%= category.id %>">
                     <strong><%= category.name %></strong>
                 </a>
+
+                <br>
+
+                <small>
+                    <%= category.description || "No description" %>
+                </small>
             </li>
+
+            <br>
         <% }) %>
     </ul>
+
 </body>
 </html>

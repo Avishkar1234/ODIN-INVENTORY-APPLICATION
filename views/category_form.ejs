@@ -1,17 +1,33 @@
-<h1>Create New Category</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create Category</title>
+  </head>
+  <body>
+    <h1>Create New Category</h1>
 
-<form action="/categories/new" method="POST">
-  <div>
-    <label>Name:</label>
-    <input type="text" name="name" required />
-  </div>
+    <form action="/categories/new" method="POST">
+      <div>
+        <label>Name:</label>
+        <br />
+        <input type="text" name="name" required />
+      </div>
 
-  <div>
-    <label>Description:</label>
-    <textarea name="description"></textarea>
-  </div>
+      <br />
 
-  <button type="submit">Create</button>
-</form>
+      <div>
+        <label>Description:</label>
+        <br />
+        <textarea name="description" rows="4" cols="40"></textarea>
+      </div>
 
-<a href="/categories">Back</a>
+      <br />
+
+      <button type="submit">Create Category</button>
+    </form>
+
+    <br />
+
+    <a href="/categories"> Back to Categories </a>
+  </body>
+</html>

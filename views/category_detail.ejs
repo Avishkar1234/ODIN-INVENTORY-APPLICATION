@@ -4,25 +4,68 @@
     <title><%= category.name %></title>
 </head>
 <body>
-    
-    <h1><%= category.name %></h1>
-    <p><%= category.description %></p>
 
-    <h2>Items in this category:</h2>
+    <h1><%= category.name %></h1>
+
+    <p>
+        <%= category.description || "No description available" %>
+    </p>
+
+    <p>
+        <a href="/">Home</a> |
+        <a href="/categories">All Categories</a> |
+        <a href="/items/new">Add Item</a>
+    </p>
+
+    <p>
+        <a href="/categories/<%= category.id %>/edit">
+            Edit Category
+        </a>
+    </p>
+
+    <form action="/categories/<%= category.id %>/delete" method="POST">
+        <button type="submit">Delete Category</button>
+    </form>
+
+    <hr>
+
+    <h2>Items in this category</h2>
 
     <% if (items.length === 0) { %>
+
         <p>No items found.</p>
+
     <% } else { %>
+
         <ul>
             <% items.forEach(item => { %>
                 <li>
-                  <a href="/items/<%= item.id %>">
-                    <%= item.name %>
-                  </a>
+
+                    <a href="/items/<%= item.id %>">
+                        <strong><%= item.name %></strong>
+                    </a>
+
+                    |
+
+                    <a href="/items/<%= item.id %>/edit">
+                        Edit
+                    </a>
+
+                    <form
+                        action="/items/<%= item.id %>/delete"
+                        method="POST"
+                        style="display:inline;"
+                    >
+                        <button type="submit">Delete</button>
+                    </form>
+
                 </li>
+
+                <br>
             <% }) %>
         </ul>
 
     <% } %>
+
 </body>
 </html>
