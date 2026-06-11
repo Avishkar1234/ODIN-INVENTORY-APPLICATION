@@ -8,27 +8,25 @@
 
     <h1>All Categories</h1>
 
-    <p>
-        <a href="/">Home</a> |
-        <a href="/categories/new">Add Category</a> |
+   <nav>
+        <a href="/">Home</a>
+        <a href="/categories/new">Add Category</a>
         <a href="/items/new">Add Item</a>
-    </p>
+    </nav>
 
     <ul>
         <% categories.forEach(category => { %>
-            <li>
+            <li class="card">
+
                 <a href="/categories/<%= category.id %>">
-                    <strong><%= category.name %></strong>
+                    <h3><%= category.name %></h3>
                 </a>
 
-                <br>
-
-                <small>
+                <p class="description">
                     <%= category.description || "No description" %>
-                </small>
-            </li>
+                </p>
 
-            <br>
+            </li>
         <% }) %>
     </ul>
 
