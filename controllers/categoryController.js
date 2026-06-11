@@ -16,7 +16,7 @@ async function getCategoryDetail(req, res) {
 
     const categoryResult = await pool.query(
       "SELECT * FROM categories WHERE id = $1",
-      [id]
+      [id],
     );
 
     if (categoryResult.rows.length === 0) {
@@ -25,7 +25,7 @@ async function getCategoryDetail(req, res) {
 
     const itemsResult = await pool.query(
       "SELECT * FROM items WHERE category_id = $1",
-      [id]
+      [id],
     );
 
     res.render("category_detail", {
@@ -48,20 +48,22 @@ async function createCategory(req, res) {
 
     await pool.query(
       "INSERT INTO categories (name, description) VALUES ($1, $2)",
-      [name, description]
+      [name, description],
     );
 
     res.redirect("/categories");
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error creating category");
+    res.status(500).send(`<pre>${err.stack}</pre>`);
   }
 }
 
 async function editCategoryForm(req, res) {
   try {
     const { id } = req.params;
-    const result = await pool.query("SELECT * FROM categories WHERE id = $1", [id]);
+    const result = await pool.query("SELECT * FROM categories WHERE id = $1", [
+      id,
+    ]);
 
     if (result.rows.length === 0) {
       return res.status(404).send("Category not found");
@@ -81,7 +83,7 @@ async function editCategory(req, res) {
 
     await pool.query(
       "UPDATE categories SET name = $1, description = $2 WHERE id = $3",
-      [name, description, id]
+      [name, description, id],
     );
 
     res.redirect(`/categories/${id}`);
