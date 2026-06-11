@@ -14,17 +14,15 @@ exports.item_create_post = async (req, res) => {
   try {
     const { name, description, price, category_id } = req.body;
 
-    console.log("FORM DATA:", req.body);
-
     await pool.query(
       "INSERT INTO items (name, description, price, category_id) VALUES ($1, $2, $3, $4)",
       [name, description, price, category_id],
     );
 
-    return res.send("ITEM CREATED SUCCESSFULLY");
+    res.redirect(`/categories/${category_id}`);
   } catch (err) {
     console.error(err);
-    return res.status(500).send(`<pre>${err.stack}</pre>`);
+    res.status(500).send("Error creating item");
   }
 };
 
